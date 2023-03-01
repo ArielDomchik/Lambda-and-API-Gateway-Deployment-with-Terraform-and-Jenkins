@@ -37,8 +37,10 @@ pipeline {
           sh 'terraform apply -target=aws_api_gateway_rest_api.apiLambda --auto-approve'
           sh 'terraform apply -target=aws_api_gateway_resource.proxy --auto-approve'
 	  sh 'terraform apply -target=aws_api_gateway_method.proxyMethod --auto-approve'
+	  sh 'terraform apply -target=aws_api_gateway_integration.lambda –auto-approve'
 	  sh 'terraform apply -target=aws_api_gateway_method.proxy_root --auto-approve'
 	  sh 'terraform apply -target=aws_aws_api_gateway_integration.lambda_root --auto-approve'
+	  sh 'terraform apply -target=aws_api_gateway_deployment.apideploy --auto-approve'
 	  sh 'terraform apply -aws_lambda_permission.apigw --auto-approve'
 	  sh 'terraform apply -refresh-only'
       }

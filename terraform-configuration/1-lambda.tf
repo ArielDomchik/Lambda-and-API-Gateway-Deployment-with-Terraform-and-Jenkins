@@ -1,3 +1,13 @@
+terraform {
+  cloud {
+    organization = "arieldomchik"
+
+    workspaces {
+      name = "Lambda"
+    }
+  }
+}
+
 resource "aws_lambda_function" "myLambda" {
   function_name = "leumi-function"
   s3_bucket     = aws_s3_bucket.mybucket.id

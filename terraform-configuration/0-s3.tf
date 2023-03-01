@@ -5,3 +5,13 @@ provider "aws" {
 resource "aws_s3_bucket" "mybucket" {
   bucket = "leumi-exercise2"
 }
+
+terraform {
+  cloud {
+    organization = "arieldomchik"
+
+    workspaces {
+      name = "Lambda"
+    }
+  }
+}
