@@ -3,7 +3,7 @@ pipeline {
 
   stages {
     stage('Init') {
-      agent { label 'Slave 1 }
+      agent { label 'Slave 1' }
 	steps {
 	  dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	    sh 'terraform init'
