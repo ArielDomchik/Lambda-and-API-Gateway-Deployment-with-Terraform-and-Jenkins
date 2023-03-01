@@ -1,4 +1,4 @@
-Lambda and API Gateway Deployment with Terraform and Jenkins
+- Lambda and API Gateway Deployment with Terraform and Jenkins
 
 This project demonstrates how to deploy a Lambda function and API Gateway using Terraform and Jenkins.
 Requirements
@@ -7,7 +7,7 @@ Requirements
     Jenkins server
     Terraform
 
-Installation
+- Installation
 
     Clone this repository to your local machine
     Install Jenkins on a server or machine
@@ -20,7 +20,7 @@ Installation
         Provision API Gateway: create an API Gateway and integration with the Lambda function
     Run the pipeline to deploy the Lambda function and API Gateway
 
-Usage
+- Usage
 
     Make changes to the Lambda function code in /src/hello.js
     Commit and push the changes to the repository
