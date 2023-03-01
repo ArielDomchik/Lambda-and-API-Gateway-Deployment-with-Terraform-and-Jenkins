@@ -6,8 +6,8 @@ pipeline {
      agent { label 'Slave 1' }
       steps {
         dir('/home/ubuntu/workspace/Lambda/src') {
-        nodejs hello.js
-        zip hello.zip hello.js
+        sh 'nodejs hello.js'
+        sh 'zip hello.zip hello.js'
       }
     }
 }
