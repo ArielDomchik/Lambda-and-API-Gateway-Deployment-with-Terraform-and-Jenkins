@@ -16,9 +16,9 @@ pipeline {
       steps {
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  sh 'terraform init'
-	  sh 'terraform apply -target=aws_s3_bucket.mybucket '
+	  sh 'terraform apply -target=aws_s3_bucket.mybucket -input=false'
 	  sh 'aws s3 cp /home/ubuntu/workspace/Lambda/src/hello.zip s3://leumi-exercise2'
-	  sh 'terraform apply -target=aws_lambda_function.myLambda'
+	  sh 'terraform apply -target=aws_lambda_function.myLambda -input=false'
       }
     }
 }
@@ -26,8 +26,9 @@ pipeline {
      agent { label 'Slave 1' }
       steps {
 	dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
-          sh 'terraform apply -target=aws_api_gateway_rest_api.apiLambda'
-          sh 'terraform apply'
+	  sh 'terraform init'
+          sh 'terraform apply -target=aws_api_gateway_rest_api.apiLambda -input=false'
+          sh 'terraform apply -input=false'
       }
     }
   }
