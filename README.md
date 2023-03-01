@@ -9,6 +9,7 @@ Requirements
 
 - Installation
 
+This project requires the next steps:
 
     Clone this repository to your local machine
     Install Jenkins on a server or machine
