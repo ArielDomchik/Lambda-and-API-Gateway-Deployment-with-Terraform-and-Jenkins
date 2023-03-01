@@ -32,6 +32,8 @@ This project requires the following steps:
 
 - Usage
 
+How to use this project:
+
     Make changes to the Lambda function code in /src/hello.js.
     Commit and push the changes to the repository.
     Run the Jenkins pipeline to deploy the updated Lambda function and API Gateway.
