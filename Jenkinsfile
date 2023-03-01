@@ -23,6 +23,7 @@ pipeline {
      agent { label 'Slave 2' }
       steps {
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
+	  sh 'terraform init'
 	  sh 'terraform apply -target=aws_s3_bucket.mybucket --auto-approve'
 	  sh 'aws s3 cp /home/ubuntu/workspace/Lambda/src/hello.zip s3://leumi-exercise2'
 	  sh 'terraform apply -target=aws_lambda_function.myLambda --auto-approve'

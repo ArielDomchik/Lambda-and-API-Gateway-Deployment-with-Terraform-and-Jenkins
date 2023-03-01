@@ -1,13 +1,3 @@
-terraform {
-  cloud {
-    organization = "arieldomchik"
-
-    workspaces {
-      name = "Lambda"
-    }
-  }
-}
-
 resource "aws_api_gateway_rest_api" "apiLambda" {
   name        = "myAPI"
 }
