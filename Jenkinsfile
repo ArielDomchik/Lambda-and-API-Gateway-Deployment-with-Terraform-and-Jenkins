@@ -16,7 +16,6 @@ pipeline {
         dir('/home/ubuntu/workspace/Lambda/src') {
         sh 'zip hello.zip hello.js'
 	archiveArtifacts artifacts: 'hello.zip', onlyIfSuccessful: true
-	copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true, target: '/home/ubuntu/workspace/Lambda/src')
       }
     }
 }
@@ -24,6 +23,7 @@ pipeline {
      agent { label 'Slave 2' }
       steps {
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
+	  copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true, target: '/home/ubuntu/workspace/Lambda/src')
 	  sh 'terraform init'
 	  sh 'terraform apply -target=aws_s3_bucket.mybucket --auto-approve'
 	  sh 'aws s3 cp /home/ubuntu/workspace/Lambda/src/hello.zip s3://leumi-exercise2'
