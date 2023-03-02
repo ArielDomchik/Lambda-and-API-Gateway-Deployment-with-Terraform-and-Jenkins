@@ -4,7 +4,7 @@ exports.handler = function (event, context, callback) {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
     },
-    body: '<h2>Hello world...Welcome to LEUMI...</h2>',
+    body: '<h2>Hello world...Welcome to LEUMI...!</h2>',
   }
   callback(null, response)
 }
