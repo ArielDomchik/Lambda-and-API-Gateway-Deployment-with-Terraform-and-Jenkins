@@ -4,6 +4,7 @@ resource "aws_lambda_function" "myLambda" {
   s3_key        = "hello.zip"
   handler       = "hello.handler"
   runtime       = "nodejs12.x"
+  source_code_hash = filebase64sha256("hello.zip")
   role          = aws_iam_role.lambda_role.arn
 }
 
