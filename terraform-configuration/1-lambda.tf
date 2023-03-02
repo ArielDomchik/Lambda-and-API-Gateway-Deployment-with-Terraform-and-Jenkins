@@ -1,6 +1,6 @@
 locals {
   file_path = "/home/ubuntu/workspace/Lambda/src"
-  file_base64sha256 = filesha256("${local.file_path}"}
+  file_base64sha256 = filesha256("${local.file_path}")
 }
 
 resource "aws_lambda_function" "myLambda" {
