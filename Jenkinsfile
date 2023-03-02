@@ -22,7 +22,7 @@ pipeline {
     stage('Provision S3 Bucket and Lambda') {
      agent { label 'Slave 2' }
       steps {
-	copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true, target: '/home/ubuntu/workspace/Lambda/src')
+	copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true)
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  sh 'ls -la /home/ubuntu/workspace/Lambda/src'
 	  sh 'terraform init'
