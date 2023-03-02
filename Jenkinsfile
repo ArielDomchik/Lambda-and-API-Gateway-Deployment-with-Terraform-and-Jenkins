@@ -5,7 +5,7 @@ pipeline {
     stage('Init') {
       agent { label 'Slave 1' }
 	steps {
-	  dir('/home/ubuntu/workspace/Lambda/terraform-configuration/s3_and_lambda') {
+	  dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	    sh 'terraform init'
     }
   }
@@ -22,7 +22,7 @@ pipeline {
     stage('Provision S3 Bucket and Lambda') {
      agent { label 'Slave 2' }
       steps {
-        dir('/home/ubuntu/workspace/Lambda/terraform-configuration/s3_and_lambda') {
+        dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  unstash 'hello.zip'
 	  sh 'terraform init'
 	  sh 'aws s3 mv s3://leumi-exercise2/hello.zip s3://leumi-exercise2/hello.zip${BUILD_NUMBER}'
@@ -34,7 +34,7 @@ pipeline {
     stage('Provision API Gateway') {
      agent { label 'Slave 1' }
       steps {
-	dir('/home/ubuntu/workspace/Lambda/terraform-configuration/api_gateway') {
+	dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  unstash 'hello.zip'
           sh 'terraform apply --auto-approve'
       }
