@@ -25,6 +25,7 @@ This project requires the following steps:
     Create a Jenkins pipeline project with the following stages:
 
     Build: zip the Lambda function code
+    Copy The Artifacts between the agents (Using stash and unstash)
     Provision S3 Bucket and Lambda: create an S3 bucket, upload the Lambda code, create a Lambda function and IAM role
     Provision API Gateway: create an API Gateway and integration with the Lambda function
 
