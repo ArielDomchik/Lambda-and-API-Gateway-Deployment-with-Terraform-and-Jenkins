@@ -15,6 +15,8 @@ pipeline {
       steps {
         dir('/home/ubuntu/workspace/Lambda/src') {
         sh 'zip hello.zip hello.js'
+	archiveArtifacts artifacts: 'hello.zip', onlyIfSuccessful: true
+	copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true, target: '/home/ubuntu/workspace/Lambda/src')
       }
     }
 }
