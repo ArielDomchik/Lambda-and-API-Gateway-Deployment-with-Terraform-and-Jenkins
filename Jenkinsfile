@@ -15,7 +15,7 @@ pipeline {
       steps {
         dir('/home/ubuntu/workspace/Lambda/src') {
         sh 'zip hello.zip hello.js'
-	archiveArtifacts artifacts: 'hello.zip', onlyIfSuccessful: true
+	archiveArtifacts artifacts: 'hello.zip', onlyIfSuccessful: true, allowEmptyArchive: true
       }
     }
 }
