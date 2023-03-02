@@ -31,11 +31,11 @@ pipeline {
     stage('Provision S3 Bucket and Lambda') {
      agent { label 'Slave 2' }
       steps {
-	dir('home/ubuntu/workspace/Lambda/src') {
+	dir('/home/ubuntu/workspace/Lambda/src') {
 	  sh 'rm hello.zip'
 	  unstash 'hello.zip'
 	}
-        dir('../terraform-configuration') {
+        dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  sh 'terraform init'
 	  sh 'terraform apply -target=aws_s3_bucket.mybucket --auto-approve'
 	  sh 'aws s3 mv s3://leumi-exercise2/hello.zip s3://leumi-exercise2/hello.zip${BUILD_NUMBER}'
