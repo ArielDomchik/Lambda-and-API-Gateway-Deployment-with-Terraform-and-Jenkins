@@ -21,7 +21,7 @@ This project requires the following steps:
     Create an AWS IAM Role with the necessary permissions for deploying Lambda and API Gateway resources. I recommend least privilege approach.
     Set up AWS CLI on the Jenkins server or machine agents with aws configure and enter your key.
     Label the Jenkins agents appropriately in the Jenkins UI to ensure the correct stages of the pipeline run on the correct agents.
-    Configure Terraform to use the Terraform Cloud backend for the state files. This is recommended for collaborative projects and to avoid issues with concurrent state file access.
+    Configure Terraform to use the Terraform Cloud backend for the state files(found on s3.tf). This is recommended for collaborative projects and to avoid issues with concurrent state file access.
     Create a Jenkins pipeline project with the following stages:
 
     Build: zip the Lambda function code
