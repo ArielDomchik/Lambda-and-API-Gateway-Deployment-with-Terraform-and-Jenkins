@@ -1,5 +1,5 @@
 locals {
-  file_path = "/home/ubuntu/workspace/Lambda/src"
+  file_path = "/home/ubuntu/workspace/Lambda/src/hello.zip"
   file_base64sha256 = filesha256("${local.file_path}")
 }
 
