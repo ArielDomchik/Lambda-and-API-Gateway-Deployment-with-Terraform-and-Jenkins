@@ -35,7 +35,7 @@ pipeline {
 	  sh 'rm hello.zip'
 	  unstash 'hello.zip'
 	}
-        dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
+        dir('../terraform-configuration') {
 	  sh 'terraform init'
 	  sh 'terraform apply -target=aws_s3_bucket.mybucket --auto-approve'
 	  sh 'aws s3 mv s3://leumi-exercise2/hello.zip s3://leumi-exercise2/hello.zip${BUILD_NUMBER}'
