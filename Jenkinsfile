@@ -24,7 +24,7 @@ pipeline {
 	  steps { 
 	    dir('/home/ubuntu/workspace/Lambda/src') {
 		sh 'rm hello.zip'
-		unstash name: 'hello.zip'
+		unstash 'hello.zip'
     }
   }
 }
