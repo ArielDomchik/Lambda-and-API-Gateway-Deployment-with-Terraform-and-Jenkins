@@ -22,9 +22,11 @@ pipeline {
     stage('Copy Artifact') {
 	agent { label 'Slave 2' }
 	  steps {
+	    dir('/home/ubuntu/workspace/Lambda/src') {
 	    copyArtifacts(projectName: 'Lambda', filter: 'hello.zip', selector: lastSuccessful(), fingerprintArtifacts: true, target: '/home/ubuntu/workspace/Lambda/src')
 	}
     }
+}
     stage('Provision S3 Bucket and Lambda') {
      agent { label 'Slave 2' }
       steps {
