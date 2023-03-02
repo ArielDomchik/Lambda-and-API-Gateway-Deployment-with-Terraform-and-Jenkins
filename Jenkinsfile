@@ -23,7 +23,6 @@ pipeline {
      agent { label 'Slave 2' }
       steps {
 	dir('/home/ubuntu/workspace/Lambda/src') {
-	  sh 'rm hello.zip'
 	  unstash 'hello.zip'
 	}
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
