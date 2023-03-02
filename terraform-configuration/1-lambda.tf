@@ -1,10 +1,15 @@
+locals {
+  file_path = "/home/ubuntu/workspace/Lambda/src"
+  file_base64sha256 = filesha256("${local.file_path}"}
+}
+
 resource "aws_lambda_function" "myLambda" {
   function_name = "leumi-function"
   s3_bucket     = aws_s3_bucket.mybucket.id
   s3_key        = "hello.zip"
   handler       = "hello.handler"
   runtime       = "nodejs12.x"
-  source_code_hash = filebase64sha256("hello.zip")
+  source_code_hash = local.base64sha256
   role          = aws_iam_role.lambda_role.arn
 }
 
