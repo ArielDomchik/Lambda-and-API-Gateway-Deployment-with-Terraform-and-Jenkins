@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Init') {
+    stage('Terraform init') {
       agent { label 'Slave 1' }
 	steps {
 	  dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
@@ -10,11 +10,11 @@ pipeline {
     }
   }
 }
-    stage('Build') {
+    stage('Build Application') {
      agent { label 'Slave 1' }
       steps {
         dir('/home/ubuntu/workspace/Lambda/src') {
-        sh 'zip hello.zip hello.js'
+        sh 'zip hello.zip hello.js && zip /home/ubuntu/workspace/Lambda/terraform-configuration/hello.zip hello.js'
 	stash includes: 'hello.zip', name: 'hello.zip'
     }
   }
@@ -32,11 +32,10 @@ pipeline {
     }
   }
 }
-    stage('Provision API Gateway') {
+    stage('Provision API Gateway and integrate with lambda') {
      agent { label 'Slave 1' }
       steps {
 	dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
-	  unstash 'hello.zip'
           sh 'terraform apply --auto-approve'
       }
     }
