@@ -33,13 +33,13 @@ pipeline {
         dir('/home/ubuntu/workspace/Lambda/terraform-configuration') {
 	  sh 'terraform init'
 	  sh 'terraform apply -target=aws_s3_bucket.mybucket --auto-approve'
-	  sh 'aws s3 rm s3://leumi-exercise2/hello.zip'
+	  sh 'aws s3 mv s3://leumi-exercise2/hello.zip s3://leumi-exercise2/hello.zip${BUILD_NUMBER}'
 	  sh 'aws s3 cp /home/ubuntu/workspace/Lambda/src/hello.zip s3://leumi-exercise2'
 	  sh 'terraform destroy -target=aws_iam_role_policy_attachment.lambda --auto-approve'
 	  sh 'terraform destroy -target=aws_iam_role.lambda_role --auto-approve'
 	  sh 'terraform destroy -target=aws_lambda_function.myLambda --auto-approve'
 	  sh 'terraform apply -target=aws_lambda_function.myLambda --auto-approve'
-	  sh 'terraform apply -taget=aws_iam_role.lambda_role --auto-approve'
+	  sh 'terraform apply -target=aws_iam_role.lambda_role --auto-approve'
 	  sh 'terraform apply -target=aws_iam_role_policy_attachment.lambda --auto-approve'
     }
   }
