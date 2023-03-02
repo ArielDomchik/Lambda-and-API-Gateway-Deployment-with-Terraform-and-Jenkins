@@ -23,7 +23,8 @@ pipeline {
 	agent { label 'Slave 2' }
 	  steps { 
 	    dir('/home/ubuntu/workspace/Lambda/src') {
-		unstash 'hello.zip'
+		sh 'rm hello.zip'
+		unstash name: 'hello.zip'
     }
   }
 }
