@@ -1,42 +1,39 @@
-- Lambda and API Gateway Deployment with Terraform and Jenkins
+
+# Lambda and API Gateway Deployment with Terraform and Jenkins
 
 This project demonstrates how to deploy a Lambda function and API Gateway using Terraform and Jenkins.
 
-- Requirements
+## Requirements
 
 This project requires:
 
-    AWS account
-    Jenkins server
-    Jenkins agents
-    Terraform
+-   AWS account
+-   Jenkins server
+-   Jenkins agents
+-   Terraform
 
-- Installation
+## Installation
 
-This project requires the following steps:
+To install this project, follow these steps:
 
-    Clone this repository to your local machine.
-    Install Jenkins on a server or machine.
-    Install Terraform on the Jenkins server or machine agents.
-    Create an AWS IAM Role with the necessary permissions for deploying Lambda and API Gateway resources. I recommend least privilege approach.
-    Set up AWS CLI on the Jenkins server or machine agents with aws configure and enter your key.
-    Label the Jenkins agents appropriately in the Jenkins UI to ensure the correct stages of the pipeline run on the correct agents.
-    Configure Terraform to use the Terraform Cloud backend for the state files(found on s3.tf). This is recommended for collaborative projects and to avoid issues with concurrent state file access.
-    Create a Jenkins pipeline project with the following stages:
+1.  Clone this repository to your local machine.
+2.  Install Jenkins on a server or machine.
+3.  Install Terraform on the Jenkins server or machine agents.
+4.  Create an AWS IAM Role with the necessary permissions for deploying Lambda and API Gateway resources. Use the principle of least privilege when defining the IAM role.
+5.  Set up AWS CLI on the Jenkins server or machine agents with `aws configure` and enter your AWS access key and secret access key.
+6.  Label the Jenkins agents appropriately in the Jenkins UI to ensure the correct stages of the pipeline run on the correct agents.
+7.  Configure Terraform to use the Terraform Cloud backend for the state files (found on `main.tf`). This is recommended for collaborative projects and to avoid issues with concurrent state file access.
+8.  Create a Jenkins pipeline project with the following stages:
+    1.  Build: Zip the Lambda function code.
+    2.  Copy the artifacts between the agents (using stash and unstash).
+    3.  Provision S3 Bucket and Lambda: Create an S3 bucket, upload the Lambda code, create a Lambda function and IAM role.
+    4.  Provision API Gateway: Create an API Gateway and integration with the Lambda function.
+9.  Run the pipeline to deploy the Lambda function and API Gateway.
 
-    Build: zip the Lambda function code
-    Copy The Artifacts between the agents (Using stash and unstash)
-    Provision S3 Bucket and Lambda: create an S3 bucket, upload the Lambda code, create a Lambda function and IAM role
-    Provision API Gateway: create an API Gateway and integration with the Lambda function
+## Usage
 
-    Run the pipeline to deploy the Lambda function and API Gateway.
+To use this project:
 
-- Usage
-
-How to use this project:
-
-    Make changes to the Lambda function code in /src/hello.js.
-    Commit and push the changes to the repository.
-    Run the Jenkins pipeline to deploy the updated Lambda function and API Gateway.
-
-Note: The pipeline may fail if the AWS resources already exist. To avoid this, you can add checks in the pipeline to see if the resources already exist before attempting to create them.
+1.  Make changes to the Lambda function code in `/src/hello.js`.
+2.  Commit and push the changes to the repository.
+3.  Run the Jenkins pipeline to deploy the updated Lambda function and API Gateway.
