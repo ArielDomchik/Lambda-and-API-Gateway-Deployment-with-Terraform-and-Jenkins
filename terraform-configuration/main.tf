@@ -2,10 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "mybucket" {
-  bucket = "leumi-exercise2"
-}
-
 terraform {
   cloud {
     organization = "arieldomchik"
@@ -14,4 +10,9 @@ terraform {
       name = "Lambda"
     }
   }
+}
+
+locals {
+  file_path = "${path.module}/hello.zip"
+  file_base64sha256 = filesha256("${local.file_path}")
 }
