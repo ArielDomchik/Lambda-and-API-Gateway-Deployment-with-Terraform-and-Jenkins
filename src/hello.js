@@ -4,7 +4,7 @@ exports.handler = function (event, context, callback) {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
     },
-    body: '<h2>Hello world...Welcome to Zesty</h2>',
+    body: '<h2>Hello world...Welcome to Dockermon</h2>',
   }
   callback(null, response)
 }
