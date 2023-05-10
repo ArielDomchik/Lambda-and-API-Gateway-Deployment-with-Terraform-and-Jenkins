@@ -3,7 +3,7 @@ resource "aws_lambda_function" "myLambda" {
   s3_bucket     = aws_s3_bucket.mybucket.id
   s3_key        = "hello.zip"
   handler       = "hello.handler"
-  runtime       = "nodejs12.x"
+  runtime       = "python3.9" #nodejs12.x
   source_code_hash = local.file_base64sha256
   role          = aws_iam_role.lambda_role.arn
 }
